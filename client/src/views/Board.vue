@@ -1,18 +1,54 @@
 <template>
   <div class="board">
-    {{boardId}}
+    <div class="row">
+      <div class="col">
+        <h1>{{board.title}}</h1>
+        <h2>{{board.description}}</h2>
+        <form @submit.prevent="addList">
+          <input type="text" placeholder="title" v-model="newList.title" required>
+          <input type="text" placeholder="description" v-model="newList.description">
+          <button type="submit">Create List</button>
+        </form>
+        <list v-for="list in lists" :listData="list"></list>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-export default {
-  name: "board",
-  created() {
-    //blocks users not logged in
-    if (!this.$store.state.user._id) {
-      this.$router.push({ name: "login" });
+  import List from '@/components/List.vue'
+  export default {
+    name: "board",
+    props: ["boardId", "board"],
+    components: {
+      List
+    },
+    data() {
+      return {
+        newList: {
+          title: '',
+          description: ''
+        }
+      }
+    },
+    created() {
+      //blocks users not logged in
+      if (!this.$store.state.user._id) {
+        this.$router.push({ name: "login" });
+      } else {
+        this.$store.dispatch('getLists', this.boardId)
+      }
+    },
+    computed: {
+      lists() {
+        return this.$store.state.lists;
+      }
+    },
+    methods: {
+      addList() {
+        this.$store.dispatch("addList", this.newList);
+        this.newList = { title: "", description: "" };
+      },
     }
-  },
-  props: ["boardId"]
-};
+  };
 </script>

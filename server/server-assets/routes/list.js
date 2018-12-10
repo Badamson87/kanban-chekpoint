@@ -3,7 +3,7 @@ let Lists = require('../models/list')
 
 //Get A List
 router.get('/:boardId', (req, res, next) => {
-  Lists.find({ boardId: req.session.uid })
+  Lists.find({ boardId: req.params.boardId })
     .then(data => {
       res.send(data)
     })
