@@ -59,6 +59,37 @@ router.delete('/:id', (req, res, next) => {
 })
 
 
+// Create a comment
 
+router.post('/:taskId', (req, res, next) => {
+  Tasks.findById(req.params.taskId)
+    .then(task => {
+      task.comments.push(req.body)
+      task.save(err => {
+        if (err) {
+          next(err)
+        }
+        res.send(task.comments[task.comments.length - 1])
+      })
+    })
+})
+
+// Delete a comment
+
+router.delete('/:taskId/:commentId', (req, res, next) => {
+  Tasks.findById(req.params.taskId)
+    .then(task => {
+      let index = task.comments.findIndex(comment => {
+        return comment._id == req.params.commentId
+      })
+      task.comments.splice(index, 1)
+      task.save(err => {
+        if (err) {
+          next(err)
+        }
+        res.send(task)
+      })
+    })
+})
 
 module.exports = router

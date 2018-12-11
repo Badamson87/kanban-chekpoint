@@ -34,7 +34,8 @@ router.put('/:id', (req, res, next) => {
           console.log(err)
           next(err)
         }
-        res.send("Successfully Updated")
+        console.log(list)
+        res.send(list)
       });
     })
     .catch(err => {
