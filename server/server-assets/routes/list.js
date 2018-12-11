@@ -26,14 +26,13 @@ router.post('/', (req, res, next) => {
 })
 
 //PUT EDIT LIST
-router.put('/:_id', (req, res, next) => {
+router.put('/:id', (req, res, next) => {
   Lists.findById(req.params.id)
     .then(list => {
       list.update(req.body, (err) => {
         if (err) {
           console.log(err)
-          next()
-          return
+          next(err)
         }
         res.send("Successfully Updated")
       });
@@ -48,9 +47,9 @@ router.put('/:_id', (req, res, next) => {
 router.delete('/:id', (req, res, next) => {
   Lists.findById(req.params.id)
     .then(list => {
-      if (!list.boardId.equals(req.session.uid)) {
-        return res.status(401).send("ACCESS DENIED!")
-      }
+      // if (!list.authId.equals(req.session.uid)) {      for mult users
+      //   return res.status(401).send("ACCESS DENIED!")
+      // }
       list.remove(err => {
         if (err) {
           console.log(err)
