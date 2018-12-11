@@ -58,6 +58,15 @@ router.delete('/:id', (req, res, next) => {
     })
 })
 
+// Move a TASK to a different LIST by UPDATING that Task's ListID
+
+// router.put('/:id', (req, res, next) => {
+//   Tasks.findByIdAndUpdate(req.params.id, req.body, { new: true })
+//     .then(task => {
+//       res.send(task)
+//     })
+// })
+
 
 // Create a comment
 
