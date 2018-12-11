@@ -19,7 +19,7 @@
   import List from '@/components/List.vue'
   export default {
     name: "board",
-    props: ["boardId", "board"],
+    props: ["boardId"],
     components: {
       List
     },
@@ -42,6 +42,9 @@
     computed: {
       lists() {
         return this.$store.state.lists;
+      },
+      board() {
+        return this.$store.state.boards.find(b => b._id == this.boardId) || {}
       }
     },
     methods: {
