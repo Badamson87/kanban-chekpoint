@@ -9,9 +9,7 @@
           <input type="text" placeholder="description" v-model="newList.description">
           <button type="submit">Create List</button>
         </form>
-        <div>
-          <list v-for="list in lists" :listData="list"></list>
-        </div>
+        <list v-for="list in lists" :listData="list"></list>
       </div>
     </div>
   </div>
@@ -51,6 +49,10 @@
         this.$store.dispatch("addList", this.newList);
         this.newList = { title: "", description: "", boardId: "" };
       },
+      // deleteList(listId) {
+      //   debugger
+      //   this.$store.dispatch('deleteLists', listId)
+      // }
     }
   };
 </script>
