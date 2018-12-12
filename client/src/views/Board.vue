@@ -1,7 +1,7 @@
 <template>
   <div class="board">
     <div class="row">
-      <div class="col">
+      <div class="col-10">
         <h1>{{board.title}}</h1>
         <h2>{{board.description}}</h2>
         <form @submit.prevent="addList">
@@ -48,11 +48,7 @@
         this.newList.boardId = this.boardId
         this.$store.dispatch("addList", this.newList);
         this.newList = { title: "", description: "", boardId: "" };
-      },
-      // deleteList(listId) {
-      //   debugger
-      //   this.$store.dispatch('deleteLists', listId)
-      // }
+      }
     }
   };
 </script>
