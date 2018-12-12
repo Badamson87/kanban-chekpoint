@@ -140,6 +140,16 @@ export default new Vuex.Store({
         .then(res => {
           commit('setTasks', res.data)
         })
+    },
+
+    // Delete Task
+
+    deleteTask({ commit, dispatch }, taskData) {
+      console.log('Task Deleted')
+      api.delete('tasks/' + taskData._id)
+        .then(res => {
+          dispatch('getTasks', taskData.listId)
+        })
     }
 
   }

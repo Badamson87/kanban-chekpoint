@@ -1,6 +1,12 @@
 <template>
   <div class="task">
-    {{taskData.title}}
+    <div class="card">
+      <div class="cardbody">
+        <h4 class="card-title">{{taskData.title}} </h4>
+        <p class="card-text">{{taskData.description}}</p>
+        <button @click="deleteTask()">Delete</button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -16,12 +22,14 @@
     mounted() {
     },
     computed: {
-      // tasks() {
-      //   return this.$store.state.tasks.listId || []
-      // }
+
 
     },
-    methods: {}
+    methods: {
+      deleteTask() {
+        this.$store.dispatch('deleteTask', this.taskData)
+      }
+    }
   }
 
 </script>

@@ -3,7 +3,7 @@
     <div class="list col-3">
       <div class="card" style="width: 18rem;">
         <div class="card-body">
-          <h5 class="card-title">{{listData.title}}</h5>
+          <h3 class="card-title">{{listData.title}}</h3>
           <h6 class="card-subtitle mb-2 text-muted">{{listData.description}}</h6>
           <button @click="deleteList()">Delete</button>
           <form @submit.prevent="createTask">
