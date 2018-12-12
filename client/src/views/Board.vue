@@ -9,7 +9,9 @@
           <input type="text" placeholder="description" v-model="newList.description">
           <button type="submit">Create List</button>
         </form>
-        <list v-for="list in lists" :listData="list"></list>
+        <div>
+          <list v-for="list in lists" :listData="list"></list>
+        </div>
       </div>
     </div>
   </div>
@@ -27,17 +29,13 @@
       return {
         newList: {
           title: '',
-          description: ''
+          description: '',
+          boardId: ''
         }
       }
     },
-    created() {
-      //blocks users not logged in
-      if (!this.$store.state.user._id) {
-        this.$router.push({ name: "login" });
-      } else {
-        this.$store.dispatch('getLists', this.boardId)
-      }
+    mounted() {
+      this.$store.dispatch('getLists', this.boardId)
     },
     computed: {
       lists() {
@@ -49,8 +47,9 @@
     },
     methods: {
       addList() {
+        this.newList.boardId = this.boardId
         this.$store.dispatch("addList", this.newList);
-        this.newList = { title: "", description: "" };
+        this.newList = { title: "", description: "", boardId: "" };
       },
     }
   };

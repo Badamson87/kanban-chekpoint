@@ -54,7 +54,11 @@ export default new Vuex.Store({
       auth.get('authenticate')
         .then(res => {
           commit('setUser', res.data)
-          router.push({ name: 'boards' })
+          dispatch("getBoards")
+        })
+        .catch(err => {
+          console.log(err)
+          router.push({ name: 'login' })
         })
     },
     login({ commit, dispatch }, creds) {
@@ -94,9 +98,10 @@ export default new Vuex.Store({
     },
 
     addList({ commit, dispatch }, listData) {
-      api.post("lists", listData)
+      console.log(listData)
+      api.post("lists/", listData)
         .then(newList => {
-          dispatch('getLists')
+          dispatch('getLists', newList.data.boardId)
         })
     },
 
