@@ -4,14 +4,13 @@
       <div class="card" style="width: 18rem;">
         <div class="card-body">
           <h3 class="card-title">{{listData.title}}</h3>
-          <h6 class="card-subtitle mb-2 text-muted">{{listData.description}}</h6>
           <button @click="deleteList()">Delete</button>
           <form @submit.prevent="createTask">
             <input type="text" placeholder="title" v-model="newTask.title" required>
             <input type="text" placeholder="description" v-model="newTask.description" required>
             <button type="submit">New Task</button>
           </form>
-          <task v-for="task in tasks" :taskData="task"></task>
+          <task v-for="task in tasks" :listData="list" :taskData="task"></task>
         </div>
       </div>
     </div>
@@ -40,9 +39,6 @@
       return this.$store.dispatch('getTasks', this.listData._id)
     },
     computed: {
-      // Lists() {
-      //   return this.$store.state.lists || []
-      // },
       tasks() {
         return this.$store.state.tasks[this.listData._id] || []
       }

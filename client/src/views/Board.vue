@@ -1,12 +1,11 @@
 <template>
   <div class="board">
-    <div class="row">
-      <div class="col-10">
+    <div class="row justify-content-center">
+      <div class="col">
         <h1>{{board.title}}</h1>
         <h2>{{board.description}}</h2>
         <form @submit.prevent="addList">
           <input type="text" placeholder="title" v-model="newList.title" required>
-          <input type="text" placeholder="description" v-model="newList.description">
           <button type="submit">Create List</button>
         </form>
         <list v-for="list in lists" :listData="list"></list>
@@ -27,7 +26,6 @@
       return {
         newList: {
           title: '',
-          description: '',
           boardId: ''
         }
       }
@@ -47,7 +45,7 @@
       addList() {
         this.newList.boardId = this.boardId
         this.$store.dispatch("addList", this.newList);
-        this.newList = { title: "", description: "", boardId: "" };
+        this.newList = { title: "", boardId: "" };
       }
     }
   };
