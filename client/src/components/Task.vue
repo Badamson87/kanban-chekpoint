@@ -19,6 +19,7 @@
           </div>
         </div>
       </div>
+      <div v-for="comment in taskData.comments">{{comment.body}}</div>
     </div>
   </div>
 </template>
@@ -60,6 +61,7 @@
           body: this.newComment.body
         }
         console.log(payload)
+        debugger
         this.$store.dispatch('createComment', payload)
       }
     }

@@ -70,16 +70,21 @@ router.delete('/:id', (req, res, next) => {
 
 // Create a comment
 
-router.post('/:taskId', (req, res, next) => {
+router.post('/:taskId/comments', (req, res, next) => {
   Tasks.findById(req.params.taskId)
     .then(task => {
       task.comments.push(req.body)
-      task.save(err => {
-        if (err) {
-          next(err)
+      const comment = task.comments[task.comments.length - 1]
+      task.save(error => {
+        if (error) {
+          return next(error)
         }
-        res.send(task.comments[task.comments.length - 1])
+        res.send(comment)
       })
+    })
+    .catch(error => {
+      console.log("[post task comment error]", error)
+      next(error)
     })
 })
 

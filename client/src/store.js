@@ -166,7 +166,11 @@ export default new Vuex.Store({
     // create a new Comment
 
     createComment({ commit, dispatch }, payload) {
-      api.put('tasks/' + payload.taskId, { body: payload.body })
+      api.post('tasks/' + payload.taskId + '/comments', payload)
+        .then(res => {
+
+        })
+        .catch(err => console.log('cannot create comment'))
     }
 
   }
