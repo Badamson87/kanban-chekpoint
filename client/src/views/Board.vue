@@ -55,19 +55,18 @@
 
 <style>
   .task {
-    background-color: lightskyblue;
     display: flex;
-    background: red
+
   }
 
   .text {
     color: white;
-    text-shadow: 0 0 5px black
+    text-shadow: 0 0
   }
 
   .board {
     background-size: cover;
-    background-image: url('@./img/cardboard.jpg')
+    background-image: url('../img/cardboard.jpg')
   }
 
   .header {

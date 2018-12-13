@@ -38,10 +38,7 @@ export default new Vuex.Store({
     },
     setTasks(state, payload) {
       console.log(payload)
-      if (payload.length > 0) {
-        // state.tasks[payload[0].listId] = payload
-        Vue.set(state.tasks, payload[0].listId, payload)
-      }
+      Vue.set(state.tasks, payload.listId, payload.data)
     }
   },
   actions: {
@@ -138,7 +135,7 @@ export default new Vuex.Store({
       console.log(listId)
       api.get('tasks/' + listId)
         .then(res => {
-          commit('setTasks', res.data)
+          commit('setTasks', { data: res.data, listId })
         })
     },
 
@@ -148,8 +145,23 @@ export default new Vuex.Store({
       console.log('Task Deleted')
       api.delete('tasks/' + taskData._id)
         .then(res => {
+          debugger
           dispatch('getTasks', taskData.listId)
         })
+    },
+
+
+    //move Task
+
+    moveTask({ commit, dispatch }, payload) {
+      console.log(payload)
+
+      api.put('tasks/' + payload.taskId, { listId: payload.listId })
+        .then(res => {
+          dispatch('getTasks', payload.listId)
+          dispatch('getTasks', payload.oldListId)
+        })
+
     }
 
   }

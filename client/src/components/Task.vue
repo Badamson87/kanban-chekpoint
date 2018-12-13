@@ -14,18 +14,12 @@
             Move
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <!-- <task v-for="list in lists" :listData="list" :taskData="task"></task> -->
-            <a v-for="list in lists" :listData="list" class="dropdown-item" href="#">{{listData.title}}</a>
-
-
-
-            <!--<a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a> -->
+            <p class="dropdown-item action" v-for="list in lists" @click="moveTask(list._id)" :listData="list" value="list._id">{{list.title}}</p>
           </div>
-
-
-
         </div>
+
+
+
       </div>
     </div>
   </div>
@@ -43,12 +37,22 @@
     mounted() {
     },
     computed: {
-
+      lists() {
+        return this.$store.state.lists
+      }
 
     },
     methods: {
       deleteTask() {
         this.$store.dispatch('deleteTask', this.taskData)
+      },
+      moveTask(id) {
+        let payload = {
+          listId: id,
+          taskId: this.taskData._id,
+          oldListId: this.taskData.listId
+        }
+        this.$store.dispatch('moveTask', payload)
       }
     }
   }
@@ -56,6 +60,7 @@
 </script>
 
 <style>
-
-
+  .action {
+    cursor: pointer;
+  }
 </style>
