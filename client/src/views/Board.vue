@@ -1,15 +1,17 @@
 <template>
-  <div class="board">
-    <div class="row justify-content-center">
-      <div class="col">
-        <h1>{{board.title}}</h1>
-        <h2>{{board.description}}</h2>
+  <div class="container-fluid">
+    <div class="row header">
+      <div class="col-12 justify-content-center">
+        <h1 class="text">{{board.title}}</h1>
+        <h2 class="text">{{board.description}}</h2>
         <form @submit.prevent="addList">
           <input type="text" placeholder="title" v-model="newList.title" required>
           <button type="submit">Create List</button>
         </form>
-        <list v-for="list in lists" :listData="list"></list>
       </div>
+    </div>
+    <div class="board row">
+      <list v-for="list in lists" class="task col-4 p-3" :listData="list"></list>
     </div>
   </div>
 </template>
@@ -50,3 +52,25 @@
     }
   };
 </script>
+
+<style>
+  .task {
+    background-color: lightskyblue;
+    display: flex;
+    background: red
+  }
+
+  .text {
+    color: white;
+    text-shadow: 0 0 5px black
+  }
+
+  .board {
+    background-size: cover;
+    background-image: url('@./img/cardboard.jpg')
+  }
+
+  .header {
+    background-color: lightskyblue
+  }
+</style>
