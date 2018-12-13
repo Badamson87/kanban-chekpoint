@@ -171,6 +171,13 @@ export default new Vuex.Store({
 
         })
         .catch(err => console.log('cannot create comment'))
+    },
+
+    deleteComment({ commit, dispatch }, payload) {
+      api.put('tasks/', payload)
+        .then(res => {
+          dispatch('getTasks', res.data.listId)
+        })
     }
 
   }

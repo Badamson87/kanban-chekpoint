@@ -4,7 +4,8 @@ let ObjectId = Schema.Types.ObjectId
 let schemaName = 'Task'
 
 let comment = new Schema({
-  body: { type: String, required: true }
+  body: { type: String, required: true },
+  commentId: { type: ObjectId, required: true }
 })
 
 let schema = new Schema({

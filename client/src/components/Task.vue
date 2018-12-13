@@ -19,7 +19,9 @@
           </div>
         </div>
       </div>
-      <div v-for="comment in taskData.comments">{{comment.body}}</div>
+      <div v-for="comment in taskData.comments">{{comment.body}}
+        <button @click="deleteComment(comment._id)">Delete Comment</button>
+      </div>
     </div>
   </div>
 </template>
@@ -63,6 +65,13 @@
         console.log(payload)
         debugger
         this.$store.dispatch('createComment', payload)
+      },
+      deleteComment(id) {
+        let payload = {
+          taskId: this.taskData._id,
+          commentId: id
+        }
+        this.$store.dispatch('deleteComment', payload)
       }
     }
   }

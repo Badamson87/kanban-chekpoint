@@ -10,7 +10,7 @@
             <input type="text" placeholder="description" v-model="newTask.description" required>
             <button type="submit">New Task</button>
           </form>
-          <task v-for="task in tasks" :listData="list" :taskData="task"></task>
+          <task v-for="task in tasks" :listData="listData" :taskData="task"></task>
         </div>
       </div>
     </div>

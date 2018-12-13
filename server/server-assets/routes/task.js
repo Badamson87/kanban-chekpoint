@@ -90,11 +90,11 @@ router.post('/:taskId/comments', (req, res, next) => {
 
 // Delete a comment
 
-router.delete('/:taskId/:commentId', (req, res, next) => {
-  Tasks.findById(req.params.taskId)
+router.put('/', (req, res, next) => {
+  Tasks.findById(req.body.taskId)
     .then(task => {
       let index = task.comments.findIndex(comment => {
-        return comment._id == req.params.commentId
+        return comment._id == req.body.commentId
       })
       task.comments.splice(index, 1)
       task.save(err => {
