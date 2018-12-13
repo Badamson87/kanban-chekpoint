@@ -39,6 +39,10 @@ export default new Vuex.Store({
     setTasks(state, payload) {
       console.log(payload)
       Vue.set(state.tasks, payload.listId, payload.data)
+    },
+    logout(state) {
+      state.user = {}
+      router.push({ name: 'login', path: '/login' })
     }
   },
   actions: {
@@ -68,7 +72,12 @@ export default new Vuex.Store({
           router.push({ name: 'boards' })
         })
     },
-
+    logout({ commit, dispatch }) {
+      auth.delete('/logout')
+        .then(res => {
+          commit('logout')
+        })
+    },
     //BOARDS
     getBoards({ commit, dispatch }) {
       api.get('boards')

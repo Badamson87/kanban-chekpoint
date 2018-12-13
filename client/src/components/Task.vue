@@ -63,7 +63,6 @@
           body: this.newComment.body
         }
         console.log(payload)
-        debugger
         this.$store.dispatch('createComment', payload)
       },
       deleteComment(id) {

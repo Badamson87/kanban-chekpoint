@@ -1,17 +1,17 @@
 <template>
   <div class="container-fluid">
     <div class="row header">
-      <div class="col-12 justify-content-center">
-        <h1 class="text">{{board.title}}</h1>
-        <h2 class="text">{{board.description}}</h2>
-        <form @submit.prevent="addList">
+      <div class="col-12 d-flex flex-row  justify-content-around">
+        <h1 class="text align-self-center">{{board.title}}</h1>
+        <h2 class="text align-self-center">{{board.description}}</h2>
+        <form @submit.prevent="addList" class="align-self-center">
           <input type="text" placeholder="title" v-model="newList.title" required>
-          <button type="submit">Create List</button>
+          <button class="btn btn-warning" type="submit">Create List</button>
         </form>
       </div>
     </div>
     <div class="board row">
-      <list v-for="list in lists" class="task col-4 p-3" :listData="list"></list>
+      <list v-for="list in lists" class="task col-4 py-3" :listData="list"></list>
     </div>
   </div>
 </template>
@@ -62,11 +62,6 @@
   .text {
     color: white;
     text-shadow: 0 0
-  }
-
-  .board {
-    background-size: cover;
-    background-image: url('../img/cardboard.jpg')
   }
 
   .header {
