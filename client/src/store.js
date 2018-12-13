@@ -132,7 +132,6 @@ export default new Vuex.Store({
     //Get Tasks
 
     getTasks({ commit }, listId) {
-      console.log(listId)
       api.get('tasks/' + listId)
         .then(res => {
           commit('setTasks', { data: res.data, listId })
@@ -155,13 +154,19 @@ export default new Vuex.Store({
 
     moveTask({ commit, dispatch }, payload) {
       console.log(payload)
-
       api.put('tasks/' + payload.taskId, { listId: payload.listId })
         .then(res => {
           dispatch('getTasks', payload.listId)
           dispatch('getTasks', payload.oldListId)
         })
+    },
 
+
+
+    // create a new Comment
+
+    createComment({ commit, dispatch }, payload) {
+      api.put('tasks/' + payload.taskId, { body: payload.body })
     }
 
   }

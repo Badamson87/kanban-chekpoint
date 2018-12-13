@@ -5,9 +5,10 @@
         <h4 class="card-title">{{taskData.title}} </h4>
         <p class="card-text">{{taskData.description}}</p>
         <button @click="deleteTask()">Delete</button>
-
-
-        <button @click="">Comment</button>
+        <form @submit.prevent='createComment'>
+          <input type="text" v-model="newComment.body" placeholder="comment here">
+          <button type="submit">Comment</button>
+        </form>
         <div class="dropdown">
           <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
@@ -17,9 +18,6 @@
             <p class="dropdown-item action" v-for="list in lists" @click="moveTask(list._id)" :listData="list" value="list._id">{{list.title}}</p>
           </div>
         </div>
-
-
-
       </div>
     </div>
   </div>
@@ -31,7 +29,9 @@
     props: ['taskData', 'listData'],
     data() {
       return {
-
+        newComment: {
+          body: ''
+        }
       }
     },
     mounted() {
@@ -53,6 +53,14 @@
           oldListId: this.taskData.listId
         }
         this.$store.dispatch('moveTask', payload)
+      },
+      createComment() {
+        let payload = {
+          taskId: this.taskData._id,
+          body: this.newComment.body
+        }
+        console.log(payload)
+        this.$store.dispatch('createComment', payload)
       }
     }
   }
