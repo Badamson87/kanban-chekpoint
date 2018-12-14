@@ -56,12 +56,11 @@
 <style>
   .task {
     display: flex;
-
   }
 
   .text {
     color: white;
-    text-shadow: 0 0
+    text-shadow: 0 0 10px black
   }
 
   .header {

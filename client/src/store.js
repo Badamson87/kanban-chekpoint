@@ -153,7 +153,6 @@ export default new Vuex.Store({
       console.log('Task Deleted')
       api.delete('tasks/' + taskData._id)
         .then(res => {
-          debugger
           dispatch('getTasks', taskData.listId)
         })
     },
@@ -177,7 +176,7 @@ export default new Vuex.Store({
     createComment({ commit, dispatch }, payload) {
       api.post('tasks/' + payload.taskId + '/comments', payload)
         .then(res => {
-
+          dispatch('getTasks', payload.listId)
         })
         .catch(err => console.log('cannot create comment'))
     },

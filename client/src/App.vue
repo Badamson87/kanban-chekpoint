@@ -13,9 +13,6 @@
           <li class="nav-item">
             <a class="nav-link" href="/board">Home</a>
           </li>
-          <!-- <li class="nav-item">
-            <a class="nav-link" href="/login">Login</a>
-          </li> -->
           <li class="nav-item action">
             <a class="nav-link" @click="logout">Logout</a>
           </li>

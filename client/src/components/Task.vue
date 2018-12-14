@@ -2,25 +2,23 @@
   <div class="task">
     <div class="card">
       <div class="cardbody">
-        <h4 class="card-title">{{taskData.title}} </h4>
-        <p class="card-text">{{taskData.description}}</p>
-        <button @click="deleteTask()">Delete</button>
-        <form @submit.prevent='createComment'>
-          <input type="text" v-model="newComment.body" placeholder="comment here">
-          <button type="submit">Comment</button>
-        </form>
+        <h4 class="card-title">{{taskData.title}} <i class="fas fa-trash action" @click="deleteTask()"></i></h4>
         <div class="dropdown">
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
-            Move
+          <button class="btn btn-secondary dropdown-toggle fas fa-truck-moving" type="button" id="dropdownMenuButton"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <p class="dropdown-item action" v-for="list in lists" @click="moveTask(list._id)" :listData="list" value="list._id">{{list.title}}</p>
           </div>
         </div>
+        <p class="card-text">{{taskData.description}}</p>
+        <form @submit.prevent='createComment'>
+          <input type="text" v-model="newComment.body" placeholder="New Comment">
+          <button type="submit"><i class="fas fa-plus"></i></button>
+        </form>
       </div>
       <div v-for="comment in taskData.comments">{{comment.body}}
-        <button @click="deleteComment(comment._id)">Delete Comment</button>
+        <i class="fas fa-trash action" @click="deleteComment(comment._id)"></i>
       </div>
     </div>
   </div>
@@ -60,7 +58,8 @@
       createComment() {
         let payload = {
           taskId: this.taskData._id,
-          body: this.newComment.body
+          body: this.newComment.body,
+          listId: this.listData._id
         }
         console.log(payload)
         this.$store.dispatch('createComment', payload)

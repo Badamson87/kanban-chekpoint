@@ -3,12 +3,10 @@
     <div class="list col-3">
       <div class="card" style="width: 18rem;">
         <div class="card-body">
-          <h3 class="card-title">{{listData.title}}</h3>
-          <button @click="deleteList()">Delete</button>
+          <h3 class="card-title">{{listData.title}} <i class="fas fa-trash action" @click="deleteList()"></i></h3>
           <form @submit.prevent="createTask">
-            <input type="text" placeholder="title" v-model="newTask.title" required>
-            <input type="text" placeholder="description" v-model="newTask.description" required>
-            <button type="submit">New Task</button>
+            <input type="text" placeholder="New Task" v-model="newTask.title" required>
+            <button type="submit"><i class="fas fa-plus"></i></button>
           </form>
           <task v-for="task in tasks" :listData="listData" :taskData="task"></task>
         </div>
