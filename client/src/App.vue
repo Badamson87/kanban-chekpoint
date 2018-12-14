@@ -65,5 +65,6 @@
 
   .box {
     color: white;
+    font-size: 25px
   }
 </style>

@@ -2,15 +2,29 @@
   <div class="login m-5">
     <h1 class="text m-5">Welcome to Cardboard</h1>
     <form v-if="loginForm" @submit.prevent="loginUser">
-      <input type="email" v-model="creds.email" placeholder="email">
-      <input type="password" v-model="creds.password" placeholder="password">
-      <button type="submit">Login</button>
+      <div>
+        <input type="email" v-model="creds.email" placeholder="email">
+      </div>
+      <div>
+        <input type="password" class="m-3" v-model="creds.password" placeholder="password">
+
+      </div>
+      <button type="submit" class="mb-3">Login</button>
     </form>
     <form v-else @submit.prevent="register">
-      <input type="text" v-model="newUser.name" placeholder="name">
-      <input type="email" v-model="newUser.email" placeholder="email">
-      <input type="password" v-model="newUser.password" placeholder="password">
-      <button type="submit">Create Account</button>
+      <div>
+        <input type="text" v-model="newUser.name" placeholder="name">
+
+      </div>
+      <div>
+        <input type="email" class="m-3" v-model="newUser.email" placeholder="email">
+
+      </div>
+      <div>
+        <input type="password" v-model="newUser.password" placeholder="password">
+
+      </div>
+      <button type="submit" class="m-3 btn btn-primary">Create Account</button>
     </form>
     <div @click="loginForm = !loginForm">
       <div class="text action">
