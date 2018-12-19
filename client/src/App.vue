@@ -11,7 +11,7 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="/">Home</a>
+            <a class="nav-link" href="/boards">Home</a>
           </li>
           <li class="nav-item action">
             <a class="nav-link" @click="logout">Logout</a>

@@ -6,7 +6,7 @@ import router from './router'
 Vue.use(Vuex)
 
 let production = !window.location.host.includes('localhost')
-let baseUrl = production ? "https://cardboard-kanban.herokuapp.com/" : '//localhost:3000'
+let baseUrl = production ? "https://cardboard-kanban.herokuapp.com/" : '//localhost:3000/'
 
 let auth = Axios.create({
   baseURL: baseUrl + 'auth/',
@@ -69,6 +69,7 @@ export default new Vuex.Store({
         })
     },
     login({ commit, dispatch }, creds) {
+      console.log(creds)
       auth.post('login', creds)
         .then(res => {
           commit('setUser', res.data)
