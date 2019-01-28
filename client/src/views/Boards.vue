@@ -11,7 +11,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-4 task">
+      <div class="col task">
         <div v-for="board in boards" :key="board._id">
           <div class="card m-3 p-5">
             <div class="card-body">
@@ -61,5 +61,10 @@
   .b-page {
     border: red;
     background-color: lightskyblue
+  }
+
+  .task {
+    flex-direction: row;
+    flex-wrap: wrap
   }
 </style>

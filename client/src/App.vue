@@ -2,8 +2,8 @@
   <div id="app">
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <i class="fas fa-box-open box"></i>
-      <a class="navbar-brand" href="#">Cardboard</a>
+
+      <router-link class="navbar-brand hover" :to="{name: 'boards'}"><i class="fas fa-box-open box"></i>Cardboard</router-link>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
         aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -11,7 +11,7 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="/">Home </a>
+            <router-link class="nav-link hover" :to="{name: 'boards'}">Home</router-link>
           </li>
           <li class="nav-item action">
             <a class="nav-link" @click="logout">Logout</a>
@@ -62,9 +62,14 @@
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
+  }
+
+  body {
+    background: fixed;
     background-image: url("./img/cardboard.jpg");
     height: 100vh;
     background-size: cover;
+
   }
 
   .box {

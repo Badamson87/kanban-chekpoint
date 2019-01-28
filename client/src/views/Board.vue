@@ -66,4 +66,8 @@
   .header {
     background-color: lightskyblue
   }
+
+  .hover {
+    cursor: pointer;
+  }
 </style>
