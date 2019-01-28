@@ -8,7 +8,7 @@
             <input type="text" placeholder="New Task" v-model="newTask.title" required>
             <button type="submit"><i class="fas fa-plus"></i></button>
           </form>
-          <task v-for="task in tasks" :listData="listData" :taskData="task"></task>
+          <task class="justify-content-center" v-for="task in tasks" :listData="listData" :taskData="task"></task>
         </div>
       </div>
     </div>
@@ -46,6 +46,7 @@
         this.$store.dispatch('deleteList', this.listData)
       },
       createTask() {
+        debugger
         this.newTask.boardId = this.listData.boardId
         this.newTask.listId = this.listData._id
         this.$store.dispatch("createTask", this.newTask)
