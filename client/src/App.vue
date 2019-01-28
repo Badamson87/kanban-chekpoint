@@ -38,9 +38,7 @@
         this.$store.dispatch('logout')
 
       },
-      boards() {
-        this.$store.dispatch('getBoards')
-      }
+
 
     }
   }
